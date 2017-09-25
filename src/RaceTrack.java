@@ -3,10 +3,15 @@ public class RaceTrack {
     private RaceCar[] finishOrder = new RaceCar[5];
     private int distance;
 
-    public void setDistance(int distance) {
+    public RaceTrack(int distance) {
         this.distance = distance;
-    }
 
+        addRaceCar(new RaceCar(5, 120, "rubber bootje"));
+        addRaceCar(new RaceCar(7, 120, "badeentje"));
+        addRaceCar(new RaceCar(20, 120, "badkuip"));
+        addRaceCar(new RaceCar(10, 120, "mona pudding"));
+        addRaceCar(new RaceCar(2, 200, "slak"));
+    }
 
     public void addRaceCar(RaceCar raceCar) {
         for (int i = 0; i < raceCars.length; i++) {
@@ -16,7 +21,30 @@ public class RaceTrack {
         }
     }
 
+    private void addfinishOrder(RaceCar raceCar) {
+        for (int i = 0; i < finishOrder.length; i++) {
+            if (finishOrder[i] == null) {
+                finishOrder[i] = raceCar;
+            }
+        }
+    }
+
     public void doRace() {
+        boolean racing = true;
+        int carfinisht = 0;
+        while (racing) {
+            for (RaceCar raceCar : raceCars) {
+                raceCar.race();
+                if (raceCar.getLocation() >= distance) {
+                    addfinishOrder(raceCar);
+                    carfinisht++;
+                }
+
+                if (carfinisht >= 5) {
+                    racing = false;
+                }
+            }
+        }
 
     }
 }
