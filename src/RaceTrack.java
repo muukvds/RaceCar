@@ -17,14 +17,17 @@ public class RaceTrack {
         for (int i = 0; i < raceCars.length; i++) {
             if (raceCars[i] == null) {
                 raceCars[i] = raceCar;
+                break;
             }
         }
     }
 
     private void addfinishOrder(RaceCar raceCar) {
         for (int i = 0; i < finishOrder.length; i++) {
+
             if (finishOrder[i] == null) {
                 finishOrder[i] = raceCar;
+                break;
             }
         }
     }
@@ -36,8 +39,11 @@ public class RaceTrack {
             for (RaceCar raceCar : raceCars) {
                 raceCar.race();
                 if (raceCar.getLocation() >= distance) {
-                    addfinishOrder(raceCar);
-                    carfinisht++;
+                    if(!raceCar.isFinisht()) {
+                        addfinishOrder(raceCar);
+                        raceCar.setFinisht(true);
+                        carfinisht++;
+                    }
                 }
 
                 if (carfinisht >= 5) {
