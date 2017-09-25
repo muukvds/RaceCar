@@ -45,6 +45,14 @@ public class RaceTrack {
                 }
             }
         }
+        printResult();
+    }
 
+    private void printResult()
+    {
+        for(int i =0;i< finishOrder.length;i++ )
+        {
+            System.out.println(i+1+": "+finishOrder[i].getName());
+        }
     }
 }
